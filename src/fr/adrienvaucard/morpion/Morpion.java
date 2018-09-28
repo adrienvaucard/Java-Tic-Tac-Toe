@@ -31,11 +31,15 @@ public class Morpion {
 
 		Boolean isFinish = false;
 		Integer actualPlayer = 1;
+		Boolean isTurnFinished = false;
+		
 
 		printGrid(grid);
 
 		while (isFinish == false) {
-
+			
+			isTurnFinished = false;
+		
 			if (actualPlayer == 1) {
 				shape = "X";
 
@@ -44,18 +48,31 @@ public class Morpion {
 			}
 
 			System.out.println("Joueur " + actualPlayer + ", à ton tour !");
+			
+			while (!isTurnFinished) {
 
-			System.out.println("Ligne ?");
-
-			row = sc.nextLine();
-			Integer rowInt = checkInt(row);
-
-			System.out.println("Colonne ?");
-
-			col = sc.nextLine();
-			Integer colInt = checkInt(col);
-
-			grid[rowInt][colInt] = shape;
+				System.out.println("Ligne ?");
+	
+				row = sc.nextLine();
+				Integer rowInt = checkInt(row);
+	
+				System.out.println("Colonne ?");
+	
+				col = sc.nextLine();
+				Integer colInt = checkInt(col);
+				
+				
+				if (grid[rowInt][colInt] == ".") {
+					
+					grid[rowInt][colInt] = shape;
+					isTurnFinished = true;
+				}
+				else {
+					System.out.println("ERREUR");
+					System.out.println("Veuillez sélectionner une case libre.");
+				}
+				
+			}
 
 			printGrid(grid);
 
